@@ -5,12 +5,32 @@ import com.javaetmoi.benchmark.mapping.model.dto.OrderDTO;
 import com.javaetmoi.benchmark.mapping.model.entity.Order;
 import fr.xebia.extras.selma.Selma;
 
-public class SelmaMapper implements OrderMapper {
+/**
+ * @author Thomas Freese
+ */
+public class SelmaMapper implements OrderMapper
+{
+    /**
+     *
+     */
+    private final SelmaOrderMapper mapper;
 
-    private SelmaOrderMapper mapper = Selma.builder(SelmaOrderMapper.class).build();
+    /**
+     * Erstellt ein neues {@link SelmaMapper} Object.
+     */
+    public SelmaMapper()
+    {
+        super();
 
+        this.mapper = Selma.builder(SelmaOrderMapper.class).build();
+    }
+
+    /**
+     * @see com.javaetmoi.benchmark.mapping.mapper.OrderMapper#map(com.javaetmoi.benchmark.mapping.model.entity.Order)
+     */
     @Override
-    public OrderDTO map(Order source) {
-        return mapper.map(source);
+    public OrderDTO map(final Order source)
+    {
+        return this.mapper.map(source);
     }
 }

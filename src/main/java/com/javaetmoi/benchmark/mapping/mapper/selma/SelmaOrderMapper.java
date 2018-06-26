@@ -7,18 +7,39 @@ import com.javaetmoi.benchmark.mapping.model.entity.Product;
 import fr.xebia.extras.selma.Field;
 import fr.xebia.extras.selma.Mapper;
 
-@Mapper(
-        withCustomFields = {
-                @Field({"customer.name", "customerName"}),
-                @Field({"customer.billingAddress.street", "billingStreetAddress"}),
-                @Field({"customer.billingAddress.city", "billingCity"}),
-                @Field({"customer.shippingAddress.street", "shippingStreetAddress"}),
-                @Field({"customer.shippingAddress.city", "shippingCity"})
-        }
-)
-public interface SelmaOrderMapper {
+/**
+ * @author Thomas Freese
+ */
+@Mapper(withCustomFields =
+{
+        @Field(
+        {
+                "customer.name", "customerName"
+        }), @Field(
+        {
+                "customer.billingAddress.street", "billingStreetAddress"
+        }), @Field(
+        {
+                "customer.billingAddress.city", "billingCity"
+        }), @Field(
+        {
+                "customer.shippingAddress.street", "shippingStreetAddress"
+        }), @Field(
+        {
+                "customer.shippingAddress.city", "shippingCity"
+        })
+})
+public interface SelmaOrderMapper
+{
+    /**
+     * @param source {@link Order}
+     * @return {@link OrderDTO}
+     */
+    public OrderDTO map(Order source);
 
-    OrderDTO map(Order source);
-
-    ProductDTO map(Product product);
+    /**
+     * @param product {@link Product}
+     * @return {@link ProductDTO}
+     */
+    public ProductDTO map(Product product);
 }

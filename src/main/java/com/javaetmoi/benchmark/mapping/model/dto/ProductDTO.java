@@ -1,22 +1,46 @@
 package com.javaetmoi.benchmark.mapping.model.dto;
 
-public class ProductDTO {
-    
-	private String name;
+/**
+ * @author Thomas Freese
+ */
+public class ProductDTO
+{
+    /**
+     *
+     */
+    private String name = null;
 
-    public ProductDTO() {
-
+    /**
+     * Erstellt ein neues {@link ProductDTO} Object.
+     */
+    public ProductDTO()
+    {
+        super();
     }
 
-    public ProductDTO(String name) {
+    /**
+     * Erstellt ein neues {@link ProductDTO} Object.
+     *
+     * @param name String
+     */
+    public ProductDTO(final String name)
+    {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    /**
+     * @return String
+     */
+    public String getName()
+    {
+        return this.name;
     }
 
-    public void setName(String name) {
+    /**
+     * @param name String
+     */
+    public void setName(final String name)
+    {
         this.name = name;
     }
 }

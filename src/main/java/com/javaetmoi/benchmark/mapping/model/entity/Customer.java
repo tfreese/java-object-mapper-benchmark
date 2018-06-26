@@ -1,31 +1,38 @@
 package com.javaetmoi.benchmark.mapping.model.entity;
 
-public class Customer {
-    String name;
-    Address shippingAddress;
-    Address billingAddress;
+public class Customer
+{
+    private String name;
+    private Address shippingAddress;
+    private Address billingAddress;
 
-    public Address getShippingAddress() {
-        return shippingAddress;
+    public Address getBillingAddress()
+    {
+        return this.billingAddress;
     }
 
-    public void setShippingAddress(Address shippingAddress) {
-        this.shippingAddress = shippingAddress;
+    public String getName()
+    {
+        return this.name;
     }
 
-    public Address getBillingAddress() {
-        return billingAddress;
+    public Address getShippingAddress()
+    {
+        return this.shippingAddress;
     }
 
-    public void setBillingAddress(Address billingAddress) {
+    public void setBillingAddress(final Address billingAddress)
+    {
         this.billingAddress = billingAddress;
     }
 
-    public String getName() {
-        return name;
+    public void setName(final String name)
+    {
+        this.name = name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setShippingAddress(final Address shippingAddress)
+    {
+        this.shippingAddress = shippingAddress;
     }
 }

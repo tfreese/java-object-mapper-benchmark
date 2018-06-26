@@ -1,17 +1,38 @@
 package com.javaetmoi.benchmark.mapping.model.entity;
 
-public class Product {
-    private String name;
+/**
+ * @author Thomas Freese
+ */
+public class Product
+{
+    /**
+     *
+     */
+    private String name = null;
 
-    public Product(String name) {
+    /**
+     * Erstellt ein neues {@link Product} Object.
+     *
+     * @param name String
+     */
+    public Product(final String name)
+    {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    /**
+     * @return String
+     */
+    public String getName()
+    {
+        return this.name;
     }
 
-    public void setName(String name) {
+    /**
+     * @param name String
+     */
+    public void setName(final String name)
+    {
         this.name = name;
     }
 }

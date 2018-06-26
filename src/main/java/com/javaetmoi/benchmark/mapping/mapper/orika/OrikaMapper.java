@@ -12,29 +12,43 @@ import ma.glasnost.orika.impl.DefaultMapperFactory;
  *
  * @see <a href="http://orika-mapper.github.io/orika-docs/performance-tuning.html">http://orika-mapper.github.io/orika-docs/performance-tuning.html</a>
  */
-public class OrikaMapper implements OrderMapper {
+public class OrikaMapper implements OrderMapper
+{
 
-    private BoundMapperFacade<Order, OrderDTO> orderMapper;
+    /**
+     *
+     */
+    private final BoundMapperFacade<Order, OrderDTO> orderMapper;
 
-    public OrikaMapper() {
+    /**
+     * Erstellt ein neues {@link OrikaMapper} Object.
+     */
+    public OrikaMapper()
+    {
+        super();
+
         MapperFactory factory = new DefaultMapperFactory.Builder().build();
+
+        // @formatter:off
         factory.registerClassMap(factory.classMap(Order.class, OrderDTO.class)
                 .field("customer.name", "customerName")
-                .field("customer.billingAddress.street",
-                        "billingStreetAddress")
+                .field("customer.billingAddress.street", "billingStreetAddress")
                 .field("customer.billingAddress.city", "billingCity")
-                .field("customer.shippingAddress.street",
-                        "shippingStreetAddress")
-                .field("customer.shippingAddress.city",
-                        "shippingCity")
+                .field("customer.shippingAddress.street", "shippingStreetAddress")
+                .field("customer.shippingAddress.city", "shippingCity")
                 .field("products", "products")
                 .toClassMap());
-        orderMapper = factory.getMapperFacade(Order.class, OrderDTO.class, false);
+        // @formatter:on
+
+        this.orderMapper = factory.getMapperFacade(Order.class, OrderDTO.class, false);
     }
 
+    /**
+     * @see com.javaetmoi.benchmark.mapping.mapper.OrderMapper#map(com.javaetmoi.benchmark.mapping.model.entity.Order)
+     */
     @Override
-    public OrderDTO map(Order source) {
-        return orderMapper.map(source);
+    public OrderDTO map(final Order source)
+    {
+        return this.orderMapper.map(source);
     }
 };
-

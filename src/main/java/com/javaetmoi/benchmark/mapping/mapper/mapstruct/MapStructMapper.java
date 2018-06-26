@@ -1,17 +1,36 @@
 package com.javaetmoi.benchmark.mapping.mapper.mapstruct;
 
+import org.mapstruct.factory.Mappers;
 import com.javaetmoi.benchmark.mapping.mapper.OrderMapper;
 import com.javaetmoi.benchmark.mapping.model.dto.OrderDTO;
 import com.javaetmoi.benchmark.mapping.model.entity.Order;
-import org.mapstruct.factory.Mappers;
 
+/**
+ * @author Thomas Freese
+ */
+public class MapStructMapper implements OrderMapper
+{
+    /**
+     *
+     */
+    private final MapStructOrderMapper mapper;
 
-public class MapStructMapper implements OrderMapper {
+    /**
+     * Erstellt ein neues {@link MapStructMapper} Object.
+     */
+    public MapStructMapper()
+    {
+        super();
 
-    MapStructOrderMapper mapper = Mappers.getMapper(MapStructOrderMapper.class);
+        this.mapper = Mappers.getMapper(MapStructOrderMapper.class);
+    }
 
+    /**
+     * @see com.javaetmoi.benchmark.mapping.mapper.OrderMapper#map(com.javaetmoi.benchmark.mapping.model.entity.Order)
+     */
     @Override
-    public OrderDTO map(Order source) {
-        return mapper.map(source);
+    public OrderDTO map(final Order source)
+    {
+        return this.mapper.map(source);
     }
 }

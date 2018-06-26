@@ -1,22 +1,57 @@
 package com.javaetmoi.benchmark.mapping.model.entity;
 
-public class Address {
-    String street;
-    String city;
+/**
+ * @author Thomas Freese
+ */
+public class Address
+{
+    /**
+     *
+     */
+    private String street = null;
 
-    public String getStreet() {
-        return street;
+    /**
+     *
+     */
+    private String city = null;
+
+    /**
+     * Erstellt ein neues {@link Address} Object.
+     */
+    public Address()
+    {
+        super();
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    /**
+     * @return String
+     */
+    public String getCity()
+    {
+        return this.city;
     }
 
-    public String getCity() {
-        return city;
+    /**
+     * @return String
+     */
+    public String getStreet()
+    {
+        return this.street;
     }
 
-    public void setCity(String city) {
+    /**
+     * @param city String
+     */
+    public void setCity(final String city)
+    {
         this.city = city;
+    }
+
+    /**
+     * @param street String
+     */
+    public void setStreet(final String street)
+    {
+        this.street = street;
     }
 }

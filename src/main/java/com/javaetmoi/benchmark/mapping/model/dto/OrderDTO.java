@@ -2,60 +2,73 @@ package com.javaetmoi.benchmark.mapping.model.dto;
 
 import java.util.List;
 
-public class OrderDTO {
+public class OrderDTO
+{
 
-	private List<ProductDTO> products;
-    String customerName;
+    private List<ProductDTO> products;
+    private String customerName;
     private String shippingStreetAddress;
     private String shippingCity;
     private String billingStreetAddress;
     private String billingCity;
 
-    public String getCustomerName() {
-        return customerName;
+    public String getBillingCity()
+    {
+        return this.billingCity;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public String getBillingStreetAddress()
+    {
+        return this.billingStreetAddress;
     }
 
-    public String getShippingStreetAddress() {
-        return shippingStreetAddress;
+    public String getCustomerName()
+    {
+        return this.customerName;
     }
 
-    public void setShippingStreetAddress(String shippingStreetAddress) {
-        this.shippingStreetAddress = shippingStreetAddress;
+    public List<ProductDTO> getProducts()
+    {
+        return this.products;
     }
 
-    public String getShippingCity() {
-        return shippingCity;
+    public String getShippingCity()
+    {
+        return this.shippingCity;
     }
 
-    public void setShippingCity(String shippingCity) {
-        this.shippingCity = shippingCity;
+    public String getShippingStreetAddress()
+    {
+        return this.shippingStreetAddress;
     }
 
-    public String getBillingStreetAddress() {
-        return billingStreetAddress;
-    }
-
-    public void setBillingStreetAddress(String billingStreetAddress) {
-        this.billingStreetAddress = billingStreetAddress;
-    }
-
-    public String getBillingCity() {
-        return billingCity;
-    }
-
-    public void setBillingCity(String billingCity) {
+    public void setBillingCity(final String billingCity)
+    {
         this.billingCity = billingCity;
     }
 
-    public List<ProductDTO> getProducts() {
-        return products;
+    public void setBillingStreetAddress(final String billingStreetAddress)
+    {
+        this.billingStreetAddress = billingStreetAddress;
     }
 
-    public void setProducts(List<ProductDTO> products) {
+    public void setCustomerName(final String customerName)
+    {
+        this.customerName = customerName;
+    }
+
+    public void setProducts(final List<ProductDTO> products)
+    {
         this.products = products;
+    }
+
+    public void setShippingCity(final String shippingCity)
+    {
+        this.shippingCity = shippingCity;
+    }
+
+    public void setShippingStreetAddress(final String shippingStreetAddress)
+    {
+        this.shippingStreetAddress = shippingStreetAddress;
     }
 }
