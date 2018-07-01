@@ -25,7 +25,7 @@ public class DozerMapper implements OrderMapper
 
         // @formatter:off
         this.mapper = DozerBeanMapperBuilder.create()
-                .withMappingFiles("com/javaetmoi/benchmark/mapping/mapper/dozer/dozer.xml")
+                .withMappingFiles("de/freese/benchmark/mapping/mapper/dozer/dozer.xml")
                 .build();
         // @formatter:on
     }
