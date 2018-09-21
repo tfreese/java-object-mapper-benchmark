@@ -1,7 +1,7 @@
 package de.freese.benchmark.mapping.mapper.dozer;
 
-import org.dozer.DozerBeanMapperBuilder;
-import org.dozer.Mapper;
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+import com.github.dozermapper.core.Mapper;
 import de.freese.benchmark.mapping.mapper.OrderMapper;
 import de.freese.benchmark.mapping.model.dto.OrderDTO;
 import de.freese.benchmark.mapping.model.entity.Order;

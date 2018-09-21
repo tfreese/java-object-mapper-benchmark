@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
-    <prerequisites>
-        <maven>3.5.0</maven>
-    </prerequisites>
 
 	<groupId>com.javaetmoi.benchmark</groupId>
 	<artifactId>java-object-mapper-benchmark</artifactId>
@@ -14,38 +10,124 @@
 
 	<name>${project.groupId} - ${project.artifactId}</name>
 	<description>JMH benchmark of Object-to-Object mapping frameworks</description>
-	
-    <organization>
-        <name>Thomas Freese</name>
-        <url>https://github.com/tfreese/java-object-mapper-benchmark</url>
-    </organization>
-    
-    <scm>
-        <url>${project.url}</url>
-        <connection>scm:git:git://github.com/tfreese/java-object-mapper-benchmark.git</connection>
-        <developerConnection>scm:git:https://github.com/tfreese/java-object-mapper-benchmark.git</developerConnection>
-    </scm>
+
+	<organization>
+		<name>Thomas Freese</name>
+		<url>https://github.com/tfreese/java-object-mapper-benchmark</url>
+	</organization>
+
+	<scm>
+		<url>${project.url}</url>
+		<connection>scm:git:git://github.com/tfreese/java-object-mapper-benchmark.git</connection>
+		<developerConnection>scm:git:https://github.com/tfreese/java-object-mapper-benchmark.git</developerConnection>
+	</scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<javac.target>10</javac.target>
+		<version.java>1.8</version.java>
 		<uberjar.name>benchmarks</uberjar.name>
+		<rule-set>file:${user.home}/.m2/rule-set.xml</rule-set>
 
-		<version.orika>1.5.2</version.orika>
-		<version.dozer>6.2.0</version.dozer>
-		<version.modelmapper>2.0.0</version.modelmapper>
-		<version.mapstruct>1.2.0.Final</version.mapstruct>
-		<version.selma>1.0</version.selma>
+		<version:com.sun.xml.bind:jaxb-impl>2.3.0.1</version:com.sun.xml.bind:jaxb-impl>
+		<version.dozer>6.4.1</version.dozer>
 		<version.jaxb>2.3.0</version.jaxb>
 		<version.jmapper>1.6.1.CR2</version.jmapper>
 		<version.jmh>1.21</version.jmh>
 		<version.junit>4.12</version.junit>
+		<version.modelmapper>2.3.0</version.modelmapper>
+		<version.mapstruct>1.2.0.Final</version.mapstruct>
+		<version.orika>1.5.2</version.orika>
+		<version.selma>1.0</version.selma>
 		<version.slf4j>1.7.25</version.slf4j>
-		
-		<version.maven-compiler-plugin>3.7.0</version.maven-compiler-plugin>
-		<version.maven-shade-plugin>3.1.1</version.maven-shade-plugin>
+
+		<version:org.apache.maven.plugins:maven-compiler-plugin>3.8.0</version:org.apache.maven.plugins:maven-compiler-plugin>
+		<version:org.apache.maven.plugins:maven-shade-plugin>3.2.0</version:org.apache.maven.plugins:maven-shade-plugin>
+		<version:org.apache.maven.plugins:maven-toolchains-plugin>1.1</version:org.apache.maven.plugins:maven-toolchains-plugin>
+		<version:org.codehaus.mojo:versions-maven-plugin>2.5</version:org.codehaus.mojo:versions-maven-plugin>
 	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version:org.apache.maven.plugins:maven-compiler-plugin}</version>
+				<configuration>
+					<compilerVersion>${version.java}</compilerVersion>
+					<source>${version.java}</source>
+					<target>${version.java}</target>
+					<compilerArgs>
+						<!--arg>add-modules</arg>
+						<arg>ALL-SYSTEM</arg-->
+					</compilerArgs>									
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>${version:org.apache.maven.plugins:maven-shade-plugin}</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<finalName>${uberjar.name}</finalName>
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>org.openjdk.jmh.Main</mainClass>
+								</transformer>
+							</transformers>
+							<filters>
+								<filter>
+									<!--
+										Shading signed JARs will fail without this.
+										http://stackoverflow.com/questions/999489/invalid-signature-file-when-attempting-to-run-a-jar
+									-->
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+				<version>${version:org.apache.maven.plugins:maven-toolchains-plugin}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>toolchain</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<toolchains>
+						<jdk>
+							<version>${version.java}</version>
+							<vendor>openjdk</vendor>
+						</jdk>
+					</toolchains>
+				</configuration>
+			</plugin>			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>${version:org.codehaus.mojo:versions-maven-plugin}</version>
+				<configuration>
+					<rulesUri>${rule-set}</rulesUri>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 		<!-- compile scope -->
@@ -106,13 +188,21 @@
 		</dependency>
 
 		<!-- runtime scope -->
-		<!-- provided scope -->
+		<!-- Implementierung von javax.xml.bind:jaxb-api -->
 		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>${version:com.sun.xml.bind:jaxb-impl}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- provided scope -->
+		<!--dependency>
 			<groupId>fr.xebia.extras</groupId>
 			<artifactId>selma-processor</artifactId>
 			<version>${version.selma}</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.openjdk.jmh</groupId>
 			<artifactId>jmh-generator-annprocess</artifactId>
@@ -128,56 +218,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${version.maven-compiler-plugin}</version>
-				<configuration>
-					<compilerVersion>${javac.target}</compilerVersion>
-					<source>${javac.target}</source>
-					<target>${javac.target}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>${version.maven-shade-plugin}</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<finalName>${uberjar.name}</finalName>
-							<transformers>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>org.openjdk.jmh.Main</mainClass>
-								</transformer>
-							</transformers>
-							<filters>
-								<filter>
-									<!--
-										Shading signed JARs will fail without this.
-										http://stackoverflow.com/questions/999489/invalid-signature-file-when-attempting-to-run-a-jar
-									-->
-									<artifact>*:*</artifact>
-									<excludes>
-										<exclude>META-INF/*.SF</exclude>
-										<exclude>META-INF/*.DSA</exclude>
-										<exclude>META-INF/*.RSA</exclude>
-									</excludes>
-								</filter>
-							</filters>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
