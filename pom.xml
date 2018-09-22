@@ -28,6 +28,9 @@
 		<version.java>1.8</version.java>
 		<uberjar.name>benchmarks</uberjar.name>
 		<rule-set>file:${user.home}/.m2/rule-set.xml</rule-set>
+		
+		<maven.test.skip>false</maven.test.skip>        <!-- skips compiling/packaging the tests -->
+		<skipTests>false</skipTests>                    <!-- skips executing the tests -->		
 
 		<version:com.sun.xml.bind:jaxb-impl>2.3.0.1</version:com.sun.xml.bind:jaxb-impl>
 		<version.dozer>6.4.1</version.dozer>
@@ -44,7 +47,7 @@
 		<version:org.apache.maven.plugins:maven-compiler-plugin>3.8.0</version:org.apache.maven.plugins:maven-compiler-plugin>
 		<version:org.apache.maven.plugins:maven-shade-plugin>3.2.0</version:org.apache.maven.plugins:maven-shade-plugin>
 		<version:org.apache.maven.plugins:maven-toolchains-plugin>1.1</version:org.apache.maven.plugins:maven-toolchains-plugin>
-		<version:org.codehaus.mojo:versions-maven-plugin>2.5</version:org.codehaus.mojo:versions-maven-plugin>
+		<version:org.codehaus.mojo:versions-maven-plugin>2.7</version:org.codehaus.mojo:versions-maven-plugin>
 	</properties>
 
 	<build>
@@ -59,8 +62,8 @@
 					<target>${version.java}</target>
 					<compilerArgs>
 						<!--arg>add-modules</arg>
-						<arg>ALL-SYSTEM</arg-->
-					</compilerArgs>									
+							<arg>ALL-SYSTEM</arg -->
+					</compilerArgs>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -100,6 +103,14 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${version:org.apache.maven.plugins:maven-surefire-plugin}</version>
+				<configuration>
+					<skipTests>${skipTests}</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-toolchains-plugin</artifactId>
 				<version>${version:org.apache.maven.plugins:maven-toolchains-plugin}</version>
 				<executions>
@@ -117,7 +128,7 @@
 						</jdk>
 					</toolchains>
 				</configuration>
-			</plugin>			
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>versions-maven-plugin</artifactId>
@@ -202,7 +213,7 @@
 			<artifactId>selma-processor</artifactId>
 			<version>${version.selma}</version>
 			<scope>provided</scope>
-		</dependency-->
+			</dependency -->
 		<dependency>
 			<groupId>org.openjdk.jmh</groupId>
 			<artifactId>jmh-generator-annprocess</artifactId>
