@@ -34,7 +34,7 @@
 
 		<version:com.sun.xml.bind:jaxb-impl>2.3.0.1</version:com.sun.xml.bind:jaxb-impl>
 		<version.dozer>6.4.1</version.dozer>
-		<version.jaxb>2.3.0</version.jaxb>
+		<version.jaxb>2.3.1</version.jaxb>
 		<version.jmapper>1.6.1.CR2</version.jmapper>
 		<version.jmh>1.21</version.jmh>
 		<version.junit>4.12</version.junit>
@@ -46,6 +46,7 @@
 
 		<version:org.apache.maven.plugins:maven-compiler-plugin>3.8.0</version:org.apache.maven.plugins:maven-compiler-plugin>
 		<version:org.apache.maven.plugins:maven-shade-plugin>3.2.0</version:org.apache.maven.plugins:maven-shade-plugin>
+		<version:org.apache.maven.plugins:maven-surefire-plugin>2.22.0</version:org.apache.maven.plugins:maven-surefire-plugin>
 		<version:org.apache.maven.plugins:maven-toolchains-plugin>1.1</version:org.apache.maven.plugins:maven-toolchains-plugin>
 		<version:org.codehaus.mojo:versions-maven-plugin>2.7</version:org.codehaus.mojo:versions-maven-plugin>
 	</properties>
