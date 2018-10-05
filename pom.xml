@@ -25,14 +25,15 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<version.java>1.8</version.java>
 		<version.maven.minimum>3.5.0</version.maven.minimum>
 		
+		<version.java>1.8</version.java>		
+
 		<uberjar.name>benchmarks</uberjar.name>
 		<rule-set>file:${user.home}/.m2/rule-set.xml</rule-set>
-		
+
 		<maven.test.skip>false</maven.test.skip>        <!-- skips compiling/packaging the tests -->
-		<skipTests>false</skipTests>                    <!-- skips executing the tests -->		
+		<skipTests>false</skipTests>                    <!-- skips executing the tests -->
 
 		<version:com.sun.xml.bind:jaxb-impl>2.3.1</version:com.sun.xml.bind:jaxb-impl>
 		<version.dozer>6.4.1</version.dozer>
@@ -66,33 +67,31 @@
 					<fork>true</fork>
 					<compilerVersion>${version.java}</compilerVersion>
 					<encoding>${project.build.sourceEncoding}</encoding>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${version:org.apache.maven.plugins:maven-enforcer-plugin}</version>
-                <executions>
-                    <execution>
-                        <id>enforce-versions</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <rules>
-                        <requireMavenVersion>
-                            <message>You are running an older version of Maven, at least Maven ${version.maven.minimum}</message>
-                            <version>[${version.maven.minimum},)</version>
-                        </requireMavenVersion>
-                        <!--requireJavaVersion>
-                            <message>You are running an older version of Java, at least JDK ${version.java}</message>
-                            <version>[${version.java}.0,)</version>
-                        </requireJavaVersion-->
-                    </rules>
-                </configuration>
-            </plugin>				
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>${version:org.apache.maven.plugins:maven-enforcer-plugin}</version>
+				<executions>
+					<execution>
+						<id>enforce-versions</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<rules>
+						<requireMavenVersion>
+							<message>You are running an older version of Maven, at least Maven ${version.maven.minimum}</message>
+							<version>[${version.maven.minimum},)</version>
+						</requireMavenVersion>
+					</rules>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
