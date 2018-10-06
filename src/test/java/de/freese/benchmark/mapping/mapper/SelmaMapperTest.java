@@ -1,11 +1,12 @@
 package de.freese.benchmark.mapping.mapper;
 
-import de.freese.benchmark.mapping.mapper.OrderMapper;
+import org.junit.Ignore;
 import de.freese.benchmark.mapping.mapper.selma.SelmaMapper;
 
 /**
  * @author Thomas Freese
  */
+@Ignore
 public class SelmaMapperTest extends AbstractMapperTest
 {
     /**

@@ -2,6 +2,7 @@ package de.freese.benchmark.mapping.mapper.dozer;
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
+import com.github.dozermapper.core.loader.api.BeanMappingBuilder;
 import de.freese.benchmark.mapping.mapper.OrderMapper;
 import de.freese.benchmark.mapping.model.dto.OrderDTO;
 import de.freese.benchmark.mapping.model.entity.Order;
@@ -23,9 +24,30 @@ public class DozerMapper implements OrderMapper
     {
         super();
 
+        BeanMappingBuilder mappingBuilder = new BeanMappingBuilder()
+        {
+            /**
+             * @see com.github.dozermapper.core.loader.api.BeanMappingBuilder#configure()
+             */
+            @Override
+            protected void configure()
+            {
+                // @formatter:off
+                mapping(Order.class, OrderDTO.class)
+                    .fields("customer.name", "customerName")
+                    .fields("customer.billingAddress.street", "billingStreetAddress")
+                    .fields("customer.billingAddress.city", "billingCity")
+                    .fields("customer.shippingAddress.street", "shippingStreetAddress")
+                    .fields("customer.shippingAddress.city", "shippingCity")
+                    ;
+                // @formatter:on
+            }
+        };
+
         // @formatter:off
         this.mapper = DozerBeanMapperBuilder.create()
-                .withMappingFiles("de/freese/benchmark/mapping/mapper/dozer/dozer.xml")
+                .withMappingBuilder(mappingBuilder)
+                //.withMappingFiles("de/freese/benchmark/mapping/mapper/dozer/dozer.xml")
                 .build();
         // @formatter:on
     }

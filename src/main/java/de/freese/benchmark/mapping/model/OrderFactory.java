@@ -12,7 +12,6 @@ import de.freese.benchmark.mapping.model.entity.Product;
  */
 public class OrderFactory
 {
-
     /**
      * @return {@link Order}
      */

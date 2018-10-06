@@ -1,6 +1,5 @@
 package de.freese.benchmark.mapping.mapper;
 
-import de.freese.benchmark.mapping.mapper.OrderMapper;
 import de.freese.benchmark.mapping.mapper.dozer.DozerMapper;
 
 /**
