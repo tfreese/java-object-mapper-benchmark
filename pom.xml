@@ -37,7 +37,7 @@
 		<maven.site-plugin.skip>false</maven.site-plugin.skip>
 		<surefire.useFile>false</surefire.useFile>
 
-		<version.java>10</version.java>
+		<version.java>11</version.java>
 		<maven.compiler.source>${version.java}</maven.compiler.source>
 		<maven.compiler.target>${version.java}</maven.compiler.target>
 
@@ -124,6 +124,10 @@
 				<version>${version:org.apache.maven.plugins:maven-surefire-plugin}</version>
 				<configuration>
 					<skipTests>${skipTests}</skipTests>
+                    <excludes>
+                        <exclude>**/ModelMapperTest.java</exclude>
+                        <exclude>**/SelmaMapperTest.java</exclude>
+                    </excludes>					
 				</configuration>
 			</plugin>
 			<plugin>

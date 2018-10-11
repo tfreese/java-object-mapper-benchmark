@@ -10,7 +10,6 @@ import de.freese.benchmark.mapping.model.entity.Order;
  */
 public class ModelMapper implements OrderMapper
 {
-
     /**
      *
      */

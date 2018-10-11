@@ -1,12 +1,10 @@
 package de.freese.benchmark.mapping.mapper;
 
-import org.junit.Ignore;
 import de.freese.benchmark.mapping.mapper.mapstruct.MapStructMapper;
 
 /**
  * @author Thomas Freese
  */
-@Ignore
 public class MapStructMapperTest extends AbstractMapperTest
 {
     /**
