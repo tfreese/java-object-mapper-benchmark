@@ -1,253 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<prerequisites>
-		<maven>3.5.0</maven>
-	</prerequisites>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>de.freese</groupId>
-	<artifactId>java-object-mapper-benchmark</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <parent>
+        <groupId>de.freese</groupId>
+        <artifactId>maven-parent</artifactId>
+        <version>0.0.1</version>
+    </parent>
 
-	<name>${project.groupId} - ${project.artifactId}</name>
-	<description>JMH benchmark of Object-to-Object mapping frameworks</description>
+    <artifactId>java-object-mapper-benchmark</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-	<organization>
-		<name>Thomas Freese</name>
-		<url>https://github.com/tfreese/java-object-mapper-benchmark</url>
-	</organization>
+    <name>${project.groupId} - ${project.artifactId}</name>
+    <description>JMH benchmark of Object-to-Object mapping frameworks</description>
 
-	<scm>
-		<url>${project.url}</url>
-		<connection>scm:git:git://github.com/tfreese/java-object-mapper-benchmark.git</connection>
-		<developerConnection>scm:git:https://github.com/tfreese/java-object-mapper-benchmark.git</developerConnection>
-	</scm>
+    <organization>
+        <name>Thomas Freese</name>
+        <url>https://github.com/tfreese/java-object-mapper-benchmark</url>
+    </organization>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.build.timestamp.format>yyyyMMdd-HHmmss</maven.build.timestamp.format>
-		<buildTimestamp>${maven.build.timestamp}</buildTimestamp>
-		<createChecksum>true</createChecksum>
-		<maven.deploy.skip>false</maven.deploy.skip>
-		<maven.install.skip>false</maven.install.skip>
-		<maven.javadoc.skip>false</maven.javadoc.skip>
-		<maven.site-plugin.skip>false</maven.site-plugin.skip>
-		<surefire.useFile>false</surefire.useFile>
+    <scm>
+        <url>${project.url}</url>
+        <connection>scm:git:git://github.com/tfreese/java-object-mapper-benchmark.git</connection>
+        <developerConnection>scm:git:https://github.com/tfreese/java-object-mapper-benchmark.git</developerConnection>
+    </scm>
 
-		<version.java>11</version.java>
-		<maven.compiler.source>${version.java}</maven.compiler.source>
-		<maven.compiler.target>${version.java}</maven.compiler.target>
+    <properties>
+        <uberjar.name>benchmarks</uberjar.name>
 
-		<uberjar.name>benchmarks</uberjar.name>
-		<rule-set>file:${user.home}/.m2/rule-set.xml</rule-set>
+        <version:com.github.dozermapper:dozer>6.4.1</version:com.github.dozermapper:dozer>
+        <version:com.googlecode.jmapper-framework:jmapper>1.6.1.CR2</version:com.googlecode.jmapper-framework:jmapper>
+        <version:fr.xebia.extras:selma>1.0</version:fr.xebia.extras:selma>
+        <version:ma.glasnost.orika:orika>1.5.2</version:ma.glasnost.orika:orika>
+        <version:org.openjdk.jmh:jmh>1.21</version:org.openjdk.jmh:jmh>
+        <version:org.mapstruct:mapstruct>1.2.0.Final</version:org.mapstruct:mapstruct>
+        <version:org.modelmapper:modelmapper>2.3.1</version:org.modelmapper:modelmapper>
+    </properties>
 
-		<maven.test.skip>false</maven.test.skip>        <!-- skips compiling/packaging the tests -->
-		<skipTests>false</skipTests>                    <!-- skips executing the tests -->
-
-		<version:com.github.dozermapper:dozer>6.4.1</version:com.github.dozermapper:dozer>
-		<version:com.googlecode.jmapper-framework:jmapper>1.6.1.CR2</version:com.googlecode.jmapper-framework:jmapper>
-		<version:com.sun.xml.bind:jaxb-impl>2.3.1</version:com.sun.xml.bind:jaxb-impl>
-		<version:fr.xebia.extras:selma>1.0</version:fr.xebia.extras:selma>
-		<version:javax.xml.bind:jaxb>2.3.1</version:javax.xml.bind:jaxb>
-		<version.junit>4.12</version.junit>
-		<version:ma.glasnost.orika:orika>1.5.2</version:ma.glasnost.orika:orika>
-		<version:org.openjdk.jmh:jmh>1.21</version:org.openjdk.jmh:jmh>
-		<version:org.mapstruct:mapstruct>1.2.0.Final</version:org.mapstruct:mapstruct>
-		<version:org.modelmapper:modelmapper>2.3.1</version:org.modelmapper:modelmapper>
-		<version:org.slf4j:slf4j>1.7.25</version:org.slf4j:slf4j>
-
-		<version:org.apache.maven.plugins:maven-compiler-plugin>3.8.0</version:org.apache.maven.plugins:maven-compiler-plugin>
-		<version:org.apache.maven.plugins:maven-enforcer-plugin>3.0.0-M2</version:org.apache.maven.plugins:maven-enforcer-plugin>
-		<version:org.apache.maven.plugins:maven-shade-plugin>3.2.0</version:org.apache.maven.plugins:maven-shade-plugin>
-		<version:org.apache.maven.plugins:maven-surefire-plugin>2.22.0</version:org.apache.maven.plugins:maven-surefire-plugin>
-		<version:org.apache.maven.plugins:maven-toolchains-plugin>1.1</version:org.apache.maven.plugins:maven-toolchains-plugin>
-		<version:org.codehaus.mojo:versions-maven-plugin>2.7</version:org.codehaus.mojo:versions-maven-plugin>
-	</properties>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${version:org.apache.maven.plugins:maven-compiler-plugin}</version>
-				<configuration>
-					<source>${version.java}</source>
-					<target>${version.java}</target>
-					<fork>true</fork>
-					<compilerVersion>${version.java}</compilerVersion>
-					<encoding>${project.build.sourceEncoding}</encoding>
-					<showDeprecation>true</showDeprecation>
-					<showWarnings>true</showWarnings>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>${version:org.apache.maven.plugins:maven-shade-plugin}</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<finalName>${uberjar.name}</finalName>
-							<transformers>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>org.openjdk.jmh.Main</mainClass>
-								</transformer>
-							</transformers>
-							<filters>
-								<filter>
-									<!--
-										Shading signed JARs will fail without this.
-										http://stackoverflow.com/questions/999489/invalid-signature-file-when-attempting-to-run-a-jar
-									-->
-									<artifact>*:*</artifact>
-									<excludes>
-										<exclude>META-INF/*.SF</exclude>
-										<exclude>META-INF/*.DSA</exclude>
-										<exclude>META-INF/*.RSA</exclude>
-									</excludes>
-								</filter>
-							</filters>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${version:org.apache.maven.plugins:maven-surefire-plugin}</version>
-				<configuration>
-					<skipTests>${skipTests}</skipTests>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${version:org.apache.maven.plugins:maven-shade-plugin}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>${uberjar.name}</finalName>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>org.openjdk.jmh.Main</mainClass>
+                                </transformer>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <!--
+                                            Shading signed JARs will fail without this.
+                                            http://stackoverflow.com/questions/999489/invalid-signature-file-when-attempting-to-run-a-jar
+                                    -->
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
                     <excludes>
                         <exclude>**/ModelMapperTest.java</exclude>
                         <exclude>**/SelmaMapperTest.java</exclude>
-                    </excludes>					
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-toolchains-plugin</artifactId>
-				<version>${version:org.apache.maven.plugins:maven-toolchains-plugin}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>toolchain</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<toolchains>
-						<jdk>
-							<version>${version.java}</version>
-							<vendor>openjdk</vendor>
-						</jdk>
-					</toolchains>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>versions-maven-plugin</artifactId>
-				<version>${version:org.codehaus.mojo:versions-maven-plugin}</version>
-				<configuration>
-					<rulesUri>${rule-set}</rulesUri>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-	<dependencies>
-		<!-- compile scope -->
-		<dependency>
-			<groupId>org.openjdk.jmh</groupId>
-			<artifactId>jmh-core</artifactId>
-			<version>${version:org.openjdk.jmh:jmh}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.dozermapper</groupId>
-			<artifactId>dozer-core</artifactId>
-			<version>${version:com.github.dozermapper:dozer}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.jmapper-framework</groupId>
-			<artifactId>jmapper-core</artifactId>
-			<version>${version:com.googlecode.jmapper-framework:jmapper}</version>
-		</dependency>
-		<dependency>
-			<groupId>fr.xebia.extras</groupId>
-			<artifactId>selma</artifactId>
-			<version>${version:fr.xebia.extras:selma}</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>${version:javax.xml.bind:jaxb}</version>
-		</dependency>
-		<dependency>
-			<groupId>ma.glasnost.orika</groupId>
-			<artifactId>orika-core</artifactId>
-			<version>${version:ma.glasnost.orika:orika}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct</artifactId>
-			<version>${version:org.mapstruct:mapstruct}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct-processor</artifactId>
-			<version>${version:org.mapstruct:mapstruct}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.modelmapper</groupId>
-			<artifactId>modelmapper</artifactId>
-			<version>${version:org.modelmapper:modelmapper}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-nop</artifactId>
-			<version>${version:org.slf4j:slf4j}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${version:org.slf4j:slf4j}</version>
-		</dependency>
+    <dependencies>
+        <!-- compile scope -->
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>${version:org.openjdk.jmh:jmh}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.dozermapper</groupId>
+            <artifactId>dozer-core</artifactId>
+            <version>${version:com.github.dozermapper:dozer}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.jmapper-framework</groupId>
+            <artifactId>jmapper-core</artifactId>
+            <version>${version:com.googlecode.jmapper-framework:jmapper}</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.xebia.extras</groupId>
+            <artifactId>selma</artifactId>
+            <version>${version:fr.xebia.extras:selma}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${version:javax.xml.bind:jaxb-api}</version>
+        </dependency>
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>${version:ma.glasnost.orika:orika}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${version:org.mapstruct:mapstruct}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${version:org.mapstruct:mapstruct}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>${version:org.modelmapper:modelmapper}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>${version:org.slf4j:slf4j}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${version:org.slf4j:slf4j}</version>
+        </dependency>
 
-		<!-- runtime scope -->
-		<!-- Implementierung von javax.xml.bind:jaxb-api -->
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-			<version>${version:com.sun.xml.bind:jaxb-impl}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>fr.xebia.extras</groupId>
-			<artifactId>selma-processor</artifactId>
-			<version>${version:fr.xebia.extras:selma}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.openjdk.jmh</groupId>
-			<artifactId>jmh-generator-annprocess</artifactId>
-			<version>${version:org.openjdk.jmh:jmh}</version>
-			<scope>runtime</scope>
-		</dependency>
+        <!-- runtime scope -->
+        <!-- Implementierung von javax.xml.bind:jaxb-api -->
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>${version:com.sun.xml.bind:jaxb}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>fr.xebia.extras</groupId>
+            <artifactId>selma-processor</artifactId>
+            <version>${version:fr.xebia.extras:selma}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>${version:org.openjdk.jmh:jmh}</version>
+            <scope>runtime</scope>
+        </dependency>
 
-		<!-- provided scope -->
-		<!-- test scope -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${version.junit}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+        <!-- provided scope -->
+        <!-- test scope -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version:junit:junit}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>
