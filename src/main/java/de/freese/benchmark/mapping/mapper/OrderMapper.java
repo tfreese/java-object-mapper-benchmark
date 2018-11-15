@@ -14,7 +14,7 @@ public interface OrderMapper extends Function<Order, OrderDTO>
      * @see java.util.function.Function#apply(java.lang.Object)
      */
     @Override
-    default OrderDTO apply(final Order t)
+    public default OrderDTO apply(final Order t)
     {
         return map(t);
     }
