@@ -36,7 +36,7 @@
         <version:ma.glasnost.orika:orika>1.5.2</version:ma.glasnost.orika:orika>
         <version:org.openjdk.jmh:jmh>1.21</version:org.openjdk.jmh:jmh>
         <version:org.mapstruct:mapstruct>1.2.0.Final</version:org.mapstruct:mapstruct>
-        <version:org.modelmapper:modelmapper>2.3.1</version:org.modelmapper:modelmapper>
+        <version:org.modelmapper:modelmapper>2.3.2</version:org.modelmapper:modelmapper>
     </properties>
 
     <build>
