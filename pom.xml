@@ -33,7 +33,7 @@
         <version:com.github.dozermapper:dozer>6.4.1</version:com.github.dozermapper:dozer>
         <version:com.googlecode.jmapper-framework:jmapper>1.6.1.CR2</version:com.googlecode.jmapper-framework:jmapper>
         <version:fr.xebia.extras:selma>1.0</version:fr.xebia.extras:selma>
-        <version:ma.glasnost.orika:orika>1.5.2</version:ma.glasnost.orika:orika>
+        <version:ma.glasnost.orika:orika>1.5.4</version:ma.glasnost.orika:orika>
         <version:org.openjdk.jmh:jmh>1.21</version:org.openjdk.jmh:jmh>
         <version:org.mapstruct:mapstruct>1.3.0.Final</version:org.mapstruct:mapstruct>
         <version:org.modelmapper:modelmapper>2.3.2</version:org.modelmapper:modelmapper>
