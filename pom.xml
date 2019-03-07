@@ -31,7 +31,7 @@
         <uberjar.name>benchmarks</uberjar.name>
 
         <version:com.github.dozermapper:dozer>6.4.1</version:com.github.dozermapper:dozer>
-        <version:com.googlecode.jmapper-framework:jmapper>1.6.1.CR2</version:com.googlecode.jmapper-framework:jmapper>
+        <version:com.googlecode.jmapper-framework:jmapper>1.6.0.1</version:com.googlecode.jmapper-framework:jmapper>
         <version:fr.xebia.extras:selma>1.0</version:fr.xebia.extras:selma>
         <version:ma.glasnost.orika:orika>1.5.4</version:ma.glasnost.orika:orika>
         <version:org.openjdk.jmh:jmh>1.21</version:org.openjdk.jmh:jmh>
