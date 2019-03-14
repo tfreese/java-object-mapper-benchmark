@@ -30,13 +30,13 @@
     <properties>
         <uberjar.name>benchmarks</uberjar.name>
 
-        <version:com.github.dozermapper:dozer>6.4.1</version:com.github.dozermapper:dozer>
-        <version:com.googlecode.jmapper-framework:jmapper>1.6.0.1</version:com.googlecode.jmapper-framework:jmapper>
-        <version:fr.xebia.extras:selma>1.0</version:fr.xebia.extras:selma>
-        <version:ma.glasnost.orika:orika>1.5.4</version:ma.glasnost.orika:orika>
-        <version:org.openjdk.jmh:jmh>1.21</version:org.openjdk.jmh:jmh>
-        <version:org.mapstruct:mapstruct>1.3.0.Final</version:org.mapstruct:mapstruct>
-        <version:org.modelmapper:modelmapper>2.3.2</version:org.modelmapper:modelmapper>
+        <version_com.github.dozermapper>6.4.1</version_com.github.dozermapper>
+        <version_com.googlecode.jmapper-framework>1.6.0.1</version_com.googlecode.jmapper-framework>
+        <version_fr.xebia.extras_selma>1.0</version_fr.xebia.extras_selma>
+        <version_ma.glasnost.orika>1.5.4</version_ma.glasnost.orika>
+        <version_org.openjdk.jmh>1.21</version_org.openjdk.jmh>
+        <version_org.mapstruct>1.3.0.Final</version_org.mapstruct>
+        <version_org.modelmapper>2.3.2</version_org.modelmapper>
     </properties>
 
     <build>
@@ -93,22 +93,22 @@
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-core</artifactId>
-            <version>${version:org.openjdk.jmh:jmh}</version>
+            <version>${version_org.openjdk.jmh}</version>
         </dependency>
         <dependency>
             <groupId>com.github.dozermapper</groupId>
             <artifactId>dozer-core</artifactId>
-            <version>${version:com.github.dozermapper:dozer}</version>
+            <version>${version_com.github.dozermapper}</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.jmapper-framework</groupId>
             <artifactId>jmapper-core</artifactId>
-            <version>${version:com.googlecode.jmapper-framework:jmapper}</version>
+            <version>${version_com.googlecode.jmapper-framework}</version>
         </dependency>
         <dependency>
             <groupId>fr.xebia.extras</groupId>
             <artifactId>selma</artifactId>
-            <version>${version:fr.xebia.extras:selma}</version>
+            <version>${version_fr.xebia.extras_selma}</version>
         </dependency>
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -117,22 +117,22 @@
         <dependency>
             <groupId>ma.glasnost.orika</groupId>
             <artifactId>orika-core</artifactId>
-            <version>${version:ma.glasnost.orika:orika}</version>
+            <version>${version_ma.glasnost.orika}</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>${version:org.mapstruct:mapstruct}</version>
+            <version>${version_org.mapstruct}</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
-            <version>${version:org.mapstruct:mapstruct}</version>
+            <version>${version_org.mapstruct}</version>
         </dependency>
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
-            <version>${version:org.modelmapper:modelmapper}</version>
+            <version>${version_org.modelmapper}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -148,7 +148,7 @@
         <dependency>
             <!--groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>${version:com.sun.xml.bind:jaxb}</version-->
+            <version>${version_com.sun.xml.bind}</version-->
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>            
             <scope>runtime</scope>
@@ -156,13 +156,13 @@
         <dependency>
             <groupId>fr.xebia.extras</groupId>
             <artifactId>selma-processor</artifactId>
-            <version>${version:fr.xebia.extras:selma}</version>
+            <version>${version_fr.xebia.extras_selma}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-generator-annprocess</artifactId>
-            <version>${version:org.openjdk.jmh:jmh}</version>
+            <version>${version_org.openjdk.jmh}</version>
             <scope>runtime</scope>
         </dependency>
 
