@@ -1,27 +1,5 @@
 package de.freese.benchmark;
 
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Fork;
-import org.openjdk.jmh.annotations.Level;
-import org.openjdk.jmh.annotations.Measurement;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.Param;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.annotations.Warmup;
-import org.openjdk.jmh.results.Result;
-import org.openjdk.jmh.results.RunResult;
-import org.openjdk.jmh.results.format.ResultFormatType;
-import org.openjdk.jmh.runner.Runner;
-import org.openjdk.jmh.runner.options.Options;
-import org.openjdk.jmh.runner.options.OptionsBuilder;
-import org.openjdk.jmh.runner.options.TimeValue;
 import de.freese.benchmark.mapping.mapper.OrderMapper;
 import de.freese.benchmark.mapping.mapper.dozer.DozerMapper;
 import de.freese.benchmark.mapping.mapper.jmapper.JMapperMapper;
@@ -33,6 +11,19 @@ import de.freese.benchmark.mapping.mapper.selma.SelmaMapper;
 import de.freese.benchmark.mapping.model.OrderFactory;
 import de.freese.benchmark.mapping.model.dto.OrderDTO;
 import de.freese.benchmark.mapping.model.entity.Order;
+import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.results.Result;
+import org.openjdk.jmh.results.RunResult;
+import org.openjdk.jmh.results.format.ResultFormatType;
+import org.openjdk.jmh.runner.Runner;
+import org.openjdk.jmh.runner.options.Options;
+import org.openjdk.jmh.runner.options.OptionsBuilder;
+import org.openjdk.jmh.runner.options.TimeValue;
+
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Die Klassen-Annotations werden benutzt, wenn der Benchmark über 'org.openjdk.jmh.Main' aufgerufen wird.<br>
@@ -48,17 +39,45 @@ import de.freese.benchmark.mapping.model.entity.Order;
 @Warmup(iterations = 2, time = 2, timeUnit = TimeUnit.SECONDS)
 @Measurement(iterations = 3, time = 2, timeUnit = TimeUnit.SECONDS)
 @Fork(value = 1, jvmArgsAppend =
-{
-        "-server", "-disablesystemassertions"
-})
+        {
+                "-server", "-disablesystemassertions"
+        })
 @State(Scope.Benchmark)
 public class MapperBenchmark
 {
     /**
+     *
+     */
+    @Param(
+            {
+                    "Manual", "MapStruct", "Selma", "JMapper", "Orika", "ModelMapper", "Dozer"
+            })
+    private String type = null;
+
+    /**
+     *
+     */
+    private OrderMapper mapper = null;
+
+    /**
+     *
+     */
+    private Order order = null;
+
+    /**
+     * Erstellt ein neues {@link MapperBenchmark} Object.
+     */
+    public MapperBenchmark()
+    {
+        super();
+    }
+
+    /**
      * @param args String[]
+     *
      * @throws Exception Falls was schief geht.
      */
-    public static void main(final String...args) throws Exception
+    public static void main(final String... args) throws Exception
     {
         // @formatter:off
         Options options = new OptionsBuilder()
@@ -81,33 +100,6 @@ public class MapperBenchmark
             Result<?> r = result.getPrimaryResult();
             System.out.printf("API replied benchmark score: %f %s over %d iterations%n", r.getScore(), r.getScoreUnit(), r.getStatistics().getN());
         }
-    }
-
-    /**
-     *
-     */
-    @Param(
-    {
-            "Manual", "MapStruct", "Selma", "JMapper", "Orika", "ModelMapper", "Dozer"
-    })
-    private String type = null;
-
-    /**
-     *
-     */
-    private OrderMapper mapper = null;
-
-    /**
-     *
-     */
-    private Order order = null;
-
-    /**
-     * Erstellt ein neues {@link MapperBenchmark} Object.
-     */
-    public MapperBenchmark()
-    {
-        super();
     }
 
     /**
