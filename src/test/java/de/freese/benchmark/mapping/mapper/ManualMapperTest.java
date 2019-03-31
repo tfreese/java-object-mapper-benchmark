@@ -1,12 +1,11 @@
 package de.freese.benchmark.mapping.mapper;
 
-import org.junit.Ignore;
 import de.freese.benchmark.mapping.mapper.manual.ManualMapper;
 
 /**
  * @author Thomas Freese
  */
-@Ignore
+// @Ignore
 public class ManualMapperTest extends AbstractMapperTest
 {
     /**

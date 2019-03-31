@@ -1,7 +1,7 @@
 package de.freese.benchmark.mapping.mapper;
 
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 import de.freese.benchmark.mapping.model.OrderFactory;
 import de.freese.benchmark.mapping.model.dto.OrderDTO;
 import de.freese.benchmark.mapping.model.entity.Order;
