@@ -30,7 +30,7 @@
     <properties>
         <uberjar.name>benchmarks</uberjar.name>
 
-        <version_com.github.dozermapper>6.4.1</version_com.github.dozermapper>
+        <version_com.github.dozermapper>6.5.0</version_com.github.dozermapper>
         <version_com.googlecode.jmapper-framework>1.6.0.1</version_com.googlecode.jmapper-framework>
         <version_fr.xebia.extras_selma>1.0</version_fr.xebia.extras_selma>
         <version_ma.glasnost.orika>1.5.4</version_ma.glasnost.orika>
