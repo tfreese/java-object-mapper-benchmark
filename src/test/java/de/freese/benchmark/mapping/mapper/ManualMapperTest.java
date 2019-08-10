@@ -5,7 +5,6 @@ import de.freese.benchmark.mapping.mapper.manual.ManualMapper;
 /**
  * @author Thomas Freese
  */
-// @Ignore
 public class ManualMapperTest extends AbstractMapperTest
 {
     /**
