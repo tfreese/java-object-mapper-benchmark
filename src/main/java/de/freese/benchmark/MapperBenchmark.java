@@ -39,7 +39,7 @@ import de.freese.benchmark.mapping.model.entity.Order;
         // Fork multipliziert die Anzahl der Iterationen
         "-disablesystemassertions"
 })
-@Threads(1)
+@Threads(1) // Anzahl paralleler Ausführungen
 public class MapperBenchmark
 {
     /**

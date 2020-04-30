@@ -36,7 +36,7 @@ public class Benchmarks
                 .measurementIterations(3).measurementTime(TimeValue.seconds(1))
                 .forks(1) // Fork multipliziert die Anzahl der Iterationen
                 //.jvmArgs("-disablesystemassertions")
-                .threads(1)
+                .threads(1) // Anzahl paralleler Ausführungen
                 .resultFormat(ResultFormatType.CSV)
                 .result(filePrefix + ".csv")
                 //.output(filePrefix) + ".log")
