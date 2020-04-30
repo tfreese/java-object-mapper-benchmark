@@ -1,8 +1,0 @@
-"Benchmark","Mode","Threads","Samples","Score","Score Error (99,9%)","Unit","Param: type"
-"de.freese.benchmark.MapperBenchmark.mapper","thrpt",1,3,"33824517,232607","2913985,658571","ops/s",Manual
-"de.freese.benchmark.MapperBenchmark.mapper","thrpt",1,3,"31229017,940035","2299463,419341","ops/s",MapStruct
-"de.freese.benchmark.MapperBenchmark.mapper","thrpt",1,3,"32187003,932771","2089982,575289","ops/s",Selma
-"de.freese.benchmark.MapperBenchmark.mapper","thrpt",1,3,"28833961,546611","3218390,410112","ops/s",JMapper
-"de.freese.benchmark.MapperBenchmark.mapper","thrpt",1,3,"4714903,059407","833706,397282","ops/s",Orika
-"de.freese.benchmark.MapperBenchmark.mapper","thrpt",1,3,"323824,702066","27644,362854","ops/s",ModelMapper
-"de.freese.benchmark.MapperBenchmark.mapper","thrpt",1,3,"99279,849090","8868,806773","ops/s",Dozer

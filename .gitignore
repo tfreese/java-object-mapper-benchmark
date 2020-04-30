@@ -4,6 +4,8 @@ target/
 .settings/
 .idea/
 *.iml
-results_*.csv
+jmh_result.csv
+result_*.csv
+result_*.log
 /.apt_generated/
 /.apt_generated_tests/

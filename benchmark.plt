@@ -1,5 +1,5 @@
 # Labels
-set title 'Java Object-to-Object mapping frameworks Performance Comparison'
+set title 'Java Object-to-Object mapping frameworks Performance Comparison from benchmark.csv'
 set ylabel 'Object graph mapped per second'
 set xlabel 'Mapping Framework'
 set xtics nomirror rotate by -45
@@ -12,7 +12,7 @@ set datafile separator ','
 
 # Output
 set terminal png enhanced font "Verdana,9"
-set output 'results.png'
+set output 'benchmark.png'
 set grid
 set key off
 set boxwidth 0.8 relative
@@ -29,5 +29,5 @@ set tics nomirror
 # every ::1 => 1. Zeile überspringen (Überschrift)
 # using 0:5 => 0. Spalte X-Achse, 5. Spalte Y-Achse
 
-plot 'results.csv' every ::1 using 0:5:xticlabels(8) with boxes ls 1,\
-     'results.csv' every ::1 using 0:($5 + 1500):(sprintf("%d",$5)) with labels offset char 0,1
+plot 'benchmark.csv' every ::1 using 0:5:xticlabels(8) with boxes ls 1,\
+     'benchmark.csv' every ::1 using 0:($5 + 1500):(sprintf("%d",$5)) with labels offset char 0,1

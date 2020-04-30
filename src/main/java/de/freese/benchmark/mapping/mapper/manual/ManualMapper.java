@@ -14,7 +14,6 @@ import de.freese.benchmark.mapping.model.entity.Product;
  */
 public final class ManualMapper implements OrderMapper
 {
-
     /**
      * Erstellt ein neues {@link ManualMapper} Object.
      */
