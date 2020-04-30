@@ -4,8 +4,6 @@
 
 package de.freese.benchmark;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.Options;
@@ -22,13 +20,15 @@ public class Benchmarks
      */
     public static void main(final String[] args) throws Exception
     {
-        String filePrefix = "result_" + new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
+        // String filePrefix = "result_" + new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
 
         // Der Builder überschreibt die Klassen-Annotationen.
         // @formatter:off
         Options options = new OptionsBuilder()
                 .include(MapperBenchmark.class.getSimpleName())
                 //.include(OtherBenchmark.class.getSimpleName())
+                //.addProfiler(GCProfiler.class)
+                .addProfiler(MaxMemoryProfiler.class)
                 //.mode(Mode.Throughput)
                 //.mode(Mode.AverageTime).timeUnit(TimeUnit.MICROSECONDS)
                 //.warmupIterations(1).warmupTime(TimeValue.seconds(1))
@@ -37,8 +37,9 @@ public class Benchmarks
                 //.jvmArgs("-disablesystemassertions")
                 //.threads(1) // Anzahl paralleler Ausführungen
                 .resultFormat(ResultFormatType.CSV)
-                .result(filePrefix + ".csv")
-                //.output(filePrefix) + ".log")
+                //.result("result.csv")
+                .result("/dev/null")
+                //.output("result.log")
                 .build()
                 ;
         // @formatter:on
