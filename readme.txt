@@ -21,3 +21,5 @@ Bei Meldung 'No benchmarks to run' -> mvn clean compile
 
 JMH in Eclipse ausführen:
 - m2e-apt Konnektor über MarketPlace installieren
+- Preferences -> Maven -> Annotation Processing -> Automatically configure
+- Auf dem Projekt_ Maven -> Update Project
