@@ -10,7 +10,6 @@ import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
-import org.openjdk.jmh.runner.options.TimeValue;
 
 /**
  * @author Thomas Freese
@@ -32,11 +31,11 @@ public class Benchmarks
                 //.include(OtherBenchmark.class.getSimpleName())
                 //.mode(Mode.Throughput)
                 //.mode(Mode.AverageTime).timeUnit(TimeUnit.MICROSECONDS)
-                .warmupIterations(1).warmupTime(TimeValue.seconds(1))
-                .measurementIterations(3).measurementTime(TimeValue.seconds(1))
-                .forks(1) // Fork multipliziert die Anzahl der Iterationen
+                //.warmupIterations(1).warmupTime(TimeValue.seconds(1))
+                //.measurementIterations(3).measurementTime(TimeValue.seconds(1))
+                //.forks(1) // Fork multipliziert die Anzahl der Iterationen
                 //.jvmArgs("-disablesystemassertions")
-                .threads(1) // Anzahl paralleler Ausführungen
+                //.threads(1) // Anzahl paralleler Ausführungen
                 .resultFormat(ResultFormatType.CSV)
                 .result(filePrefix + ".csv")
                 //.output(filePrefix) + ".log")

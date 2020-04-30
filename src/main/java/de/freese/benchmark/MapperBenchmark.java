@@ -26,11 +26,11 @@ import de.freese.benchmark.mapping.model.entity.Order;
 
 /**
  * Die Klassen-Annotations werden benutzt, wenn der Benchmark über 'org.openjdk.jmh.Main' aufgerufen wird.<br>
+ * Alle Annotationen können auch auf Methoden-Ebene verwendet werden.
  *
  * @author Thomas Freese
  */
 @BenchmarkMode(Mode.Throughput)
-@State(Scope.Benchmark)
 // @OutputTimeUnit(TimeUnit.MILLISECONDS) // Nur für Mode.AverageTime
 @Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.SECONDS)
 @Measurement(iterations = 3, time = 1, timeUnit = TimeUnit.SECONDS)
@@ -43,23 +43,75 @@ import de.freese.benchmark.mapping.model.entity.Order;
 public class MapperBenchmark
 {
     /**
-     *
+     * @author Thomas Freese
      */
-    private OrderMapper mapper = null;
-
-    /**
-     *
-     */
-    private Order order = null;
-
-    /**
-     *
-     */
-    @Param(
+    @State(Scope.Benchmark)
+    public static class BenchmarkState
     {
-            "Manual", "MapStruct", "Orika", "ModelMapper", "Dozer"
-    })
-    private String type = null;
+        /**
+        *
+        */
+        public OrderMapper mapper = null;
+
+        /**
+        *
+        */
+        public Order order = null;
+
+        /**
+        *
+        */
+        @Param(
+        {
+                "Manual", "MapStruct", "Orika", "ModelMapper", "Dozer"
+        })
+        private String type = null;
+
+        /**
+         * Erstellt ein neues {@link BenchmarkState} Object.
+         */
+        public BenchmarkState()
+        {
+            super();
+        }
+
+        /**
+         * Jede Measurement-Iteration bekommt eine neue Objekt-Struktur.
+         */
+        @Setup(Level.Iteration)
+        public void preInit()
+        {
+            this.order = OrderFactory.buildOrder();
+        }
+
+        /**
+         * Jede Durchlauf bekommt einen neuen {@link OrderMapper}.
+         */
+        @Setup(Level.Trial)
+        public void setUp()
+        {
+            switch (this.type)
+            {
+                case "Dozer":
+                    this.mapper = new DozerMapper();
+                    break;
+                case "Orika":
+                    this.mapper = new OrikaMapper();
+                    break;
+                case "ModelMapper":
+                    this.mapper = new ModelMapper();
+                    break;
+                case "MapStruct":
+                    this.mapper = new MapStructMapper();
+                    break;
+                case "Manual":
+                    this.mapper = new ManualMapper();
+                    break;
+                default:
+                    throw new IllegalStateException("Unknown type: " + this.type);
+            }
+        }
+    }
 
     /**
      * Erstellt ein neues {@link MapperBenchmark} Object.
@@ -71,49 +123,16 @@ public class MapperBenchmark
 
     /**
      * @param blackhole B{@link Blackhole}
+     * @param state {@link BenchmarkState}
      */
     @Benchmark
-    public void mapper(final Blackhole blackhole)
+    public void mapper(final Blackhole blackhole, final BenchmarkState state)
     {
-        OrderDTO dto = this.mapper.map(this.order);
+        OrderMapper mapper = state.mapper;
+        Order order = state.order;
 
-        blackhole.consume(dto);
-    }
+        OrderDTO orderDTO = mapper.map(order);
 
-    /**
-     *
-     */
-    @Setup(Level.Iteration)
-    public void preInit()
-    {
-        this.order = OrderFactory.buildOrder();
-    }
-
-    /**
-     *
-     */
-    @Setup(Level.Trial)
-    public void setup()
-    {
-        switch (this.type)
-        {
-            case "Dozer":
-                this.mapper = new DozerMapper();
-                break;
-            case "Orika":
-                this.mapper = new OrikaMapper();
-                break;
-            case "ModelMapper":
-                this.mapper = new ModelMapper();
-                break;
-            case "MapStruct":
-                this.mapper = new MapStructMapper();
-                break;
-            case "Manual":
-                this.mapper = new ManualMapper();
-                break;
-            default:
-                throw new IllegalStateException("Unknown type: " + this.type);
-        }
+        blackhole.consume(orderDTO);
     }
 }
