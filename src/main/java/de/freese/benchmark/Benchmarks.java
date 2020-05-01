@@ -28,7 +28,7 @@ public class Benchmarks
                 .include(MapperBenchmark.class.getSimpleName())
                 //.include(OtherBenchmark.class.getSimpleName())
                 //.addProfiler(GCProfiler.class)
-                .addProfiler(MaxMemoryProfiler.class)
+                //.addProfiler(MaxMemoryProfiler.class)
                 //.mode(Mode.Throughput)
                 //.mode(Mode.AverageTime).timeUnit(TimeUnit.MICROSECONDS)
                 //.warmupIterations(1).warmupTime(TimeValue.seconds(1))

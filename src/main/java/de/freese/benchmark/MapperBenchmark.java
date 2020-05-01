@@ -11,6 +11,7 @@ import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.TearDown;
 import org.openjdk.jmh.annotations.Threads;
 import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
@@ -76,6 +77,16 @@ public class MapperBenchmark
         }
 
         /**
+         *
+         */
+        @TearDown
+        public void close()
+        {
+            this.mapper = null;
+            this.order = null;
+        }
+
+        /**
          * Jede Measurement-Iteration bekommt eine neue Objekt-Struktur.
          */
         @Setup(Level.Iteration)
@@ -126,7 +137,7 @@ public class MapperBenchmark
      * @param state {@link BenchmarkState}
      */
     @Benchmark
-    public void mapper(final Blackhole blackhole, final BenchmarkState state)
+    public void benchmarkMapper(final Blackhole blackhole, final BenchmarkState state)
     {
         OrderMapper mapper = state.mapper;
         Order order = state.order;
