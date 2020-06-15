@@ -9,16 +9,8 @@ import de.freese.benchmark.mapping.model.entity.Order;
 /**
  * @author Thomas Freese
  */
-public abstract class AbstractMapperTest
+abstract class AbstractMapperTest
 {
-    /**
-     * Erstellt ein neues {@link AbstractMapperTest} Object.
-     */
-    public AbstractMapperTest()
-    {
-        super();
-    }
-
     /**
      * @return {@link OrderMapper}
      */
@@ -28,7 +20,7 @@ public abstract class AbstractMapperTest
      *
      */
     @Test
-    public void map()
+    void map()
     {
         Order order = OrderFactory.buildOrder();
         OrderDTO orderDTO = getOrderMapper().map(order);
