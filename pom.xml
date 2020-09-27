@@ -32,7 +32,7 @@
 
 		<version_com.github.dozermapper>6.5.0</version_com.github.dozermapper>
 		<version_ma.glasnost.orika>1.5.4</version_ma.glasnost.orika>
-		<version_org.mapstruct>1.3.1.Final</version_org.mapstruct>
+		<version_org.mapstruct>1.4.0.Final</version_org.mapstruct>
 		<version_org.modelmapper>2.3.8</version_org.modelmapper>
 	</properties>
 
