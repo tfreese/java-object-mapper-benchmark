@@ -8,14 +8,6 @@ import de.freese.benchmark.mapping.mapper.modelmapper.ModelMapper;
 public class ModelMapperTest extends AbstractMapperTest
 {
     /**
-     * Erstellt ein neues {@link ModelMapperTest} Object.
-     */
-    public ModelMapperTest()
-    {
-        super();
-    }
-
-    /**
      * @see de.freese.benchmark.mapping.mapper.AbstractMapperTest#getOrderMapper()
      */
     @Override

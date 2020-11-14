@@ -8,14 +8,6 @@ import de.freese.benchmark.mapping.mapper.orika.OrikaMapper;
 public class OrikaMapperTest extends AbstractMapperTest
 {
     /**
-     * Erstellt ein neues {@link OrikaMapperTest} Object.
-     */
-    public OrikaMapperTest()
-    {
-        super();
-    }
-
-    /**
      * @see de.freese.benchmark.mapping.mapper.AbstractMapperTest#getOrderMapper()
      */
     @Override

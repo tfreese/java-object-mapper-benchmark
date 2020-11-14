@@ -8,14 +8,6 @@ import de.freese.benchmark.mapping.mapper.dozer.DozerMapper;
 public class DozerMapperTest extends AbstractMapperTest
 {
     /**
-     * Erstellt ein neues {@link DozerMapperTest} Object.
-     */
-    public DozerMapperTest()
-    {
-        super();
-    }
-
-    /**
      * @see de.freese.benchmark.mapping.mapper.AbstractMapperTest#getOrderMapper()
      */
     @Override

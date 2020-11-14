@@ -8,14 +8,6 @@ import de.freese.benchmark.mapping.mapper.manual.ManualMapper;
 public class ManualMapperTest extends AbstractMapperTest
 {
     /**
-     * Erstellt ein neues {@link ManualMapperTest} Object.
-     */
-    public ManualMapperTest()
-    {
-        super();
-    }
-
-    /**
      * @see de.freese.benchmark.mapping.mapper.AbstractMapperTest#getOrderMapper()
      */
     @Override

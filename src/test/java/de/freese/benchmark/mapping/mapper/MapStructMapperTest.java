@@ -8,14 +8,6 @@ import de.freese.benchmark.mapping.mapper.mapstruct.MapStructMapper;
 public class MapStructMapperTest extends AbstractMapperTest
 {
     /**
-     * Erstellt ein neues {@link MapStructMapperTest} Object.
-     */
-    public MapStructMapperTest()
-    {
-        super();
-    }
-
-    /**
      * @see de.freese.benchmark.mapping.mapper.AbstractMapperTest#getOrderMapper()
      */
     @Override
