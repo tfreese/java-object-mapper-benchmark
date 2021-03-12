@@ -8,25 +8,17 @@ public class Customer
     /**
      *
      */
-    private String name = null;
+    private Address billingAddress;
 
     /**
      *
      */
-    private Address shippingAddress = null;
+    private String name;
 
     /**
      *
      */
-    private Address billingAddress = null;
-
-    /**
-     * Erstellt ein neues {@link Customer} Object.
-     */
-    public Customer()
-    {
-        super();
-    }
+    private Address shippingAddress;
 
     /**
      * @return {@link Address}

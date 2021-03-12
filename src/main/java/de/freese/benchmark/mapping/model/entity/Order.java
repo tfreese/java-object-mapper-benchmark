@@ -10,20 +10,12 @@ public class Order
     /**
      *
      */
-    private Customer customer = null;
+    private Customer customer;
 
     /**
      *
      */
-    private List<Product> products = null;
-
-    /**
-     * Erstellt ein neues {@link Order} Object.
-     */
-    public Order()
-    {
-        super();
-    }
+    private List<Product> products;
 
     /**
      * @return {@link Customer}

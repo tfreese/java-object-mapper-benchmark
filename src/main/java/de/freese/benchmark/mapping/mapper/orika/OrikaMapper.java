@@ -14,7 +14,6 @@ import ma.glasnost.orika.impl.DefaultMapperFactory;
  */
 public class OrikaMapper implements OrderMapper
 {
-
     /**
      *
      */
@@ -51,4 +50,4 @@ public class OrikaMapper implements OrderMapper
     {
         return this.orderMapper.map(source);
     }
-};
+}

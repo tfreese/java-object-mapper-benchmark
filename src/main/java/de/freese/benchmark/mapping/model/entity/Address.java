@@ -8,20 +8,12 @@ public class Address
     /**
      *
      */
-    private String street = null;
+    private String city;
 
     /**
      *
      */
-    private String city = null;
-
-    /**
-     * Erstellt ein neues {@link Address} Object.
-     */
-    public Address()
-    {
-        super();
-    }
+    private String street;
 
     /**
      * @return String

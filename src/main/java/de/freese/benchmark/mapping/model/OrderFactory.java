@@ -10,7 +10,7 @@ import de.freese.benchmark.mapping.model.entity.Product;
 /**
  * @author Thomas Freese
  */
-public class OrderFactory
+public final class OrderFactory
 {
     /**
      * @return {@link Order}
@@ -39,5 +39,13 @@ public class OrderFactory
         products.add(new Product("shoes"));
 
         return order;
+    }
+
+    /**
+     * Erstellt ein neues {@link OrderFactory} Object.
+     */
+    private OrderFactory()
+    {
+        super();
     }
 }

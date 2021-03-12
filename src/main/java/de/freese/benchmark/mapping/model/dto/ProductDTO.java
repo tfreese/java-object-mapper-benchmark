@@ -8,7 +8,7 @@ public class ProductDTO
     /**
      *
      */
-    private String name = null;
+    private String name;
 
     /**
      * Erstellt ein neues {@link ProductDTO} Object.

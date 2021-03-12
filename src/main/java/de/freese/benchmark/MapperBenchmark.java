@@ -52,12 +52,12 @@ public class MapperBenchmark
         /**
         *
         */
-        public OrderMapper mapper = null;
+        public OrderMapper mapper;
 
         /**
         *
         */
-        public Order order = null;
+        public Order order;
 
         /**
         *
@@ -66,15 +66,7 @@ public class MapperBenchmark
         {
                 "Manual", "MapStruct", "Orika", "ModelMapper", "Dozer"
         })
-        private String type = null;
-
-        /**
-         * Erstellt ein neues {@link BenchmarkState} Object.
-         */
-        public BenchmarkState()
-        {
-            super();
-        }
+        private String type;
 
         /**
          *
@@ -101,26 +93,16 @@ public class MapperBenchmark
         @Setup(Level.Trial)
         public void setUp()
         {
-            switch (this.type)
+            this.mapper = switch (this.type)
             {
-                case "Dozer":
-                    this.mapper = new DozerMapper();
-                    break;
-                case "Orika":
-                    this.mapper = new OrikaMapper();
-                    break;
-                case "ModelMapper":
-                    this.mapper = new ModelMapper();
-                    break;
-                case "MapStruct":
-                    this.mapper = new MapStructMapper();
-                    break;
-                case "Manual":
-                    this.mapper = new ManualMapper();
-                    break;
-                default:
-                    throw new IllegalStateException("Unknown type: " + this.type);
-            }
+                case "Dozer" -> new DozerMapper();
+                case "Orika" -> new OrikaMapper();
+                case "ModelMapper" -> new ModelMapper();
+                case "MapStruct" -> new MapStructMapper();
+                case "Manual" -> new ManualMapper();
+
+                default -> throw new IllegalStateException("Unknown type: " + this.type);
+            };
         }
     }
 

@@ -8,7 +8,7 @@ public class Product
     /**
      *
      */
-    private String name = null;
+    private String name;
 
     /**
      * Erstellt ein neues {@link Product} Object.

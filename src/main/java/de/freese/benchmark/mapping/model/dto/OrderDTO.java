@@ -10,40 +10,32 @@ public class OrderDTO
     /**
      *
      */
-    private List<ProductDTO> products = null;
+    private String billingCity;
 
     /**
      *
      */
-    private String customerName = null;
+    private String billingStreetAddress;
 
     /**
      *
      */
-    private String shippingStreetAddress = null;
+    private String customerName;
 
     /**
      *
      */
-    private String shippingCity = null;
+    private List<ProductDTO> products;
 
     /**
      *
      */
-    private String billingStreetAddress = null;
+    private String shippingCity;
 
     /**
      *
      */
-    private String billingCity = null;
-
-    /**
-     * Erstellt ein neues {@link OrderDTO} Object.
-     */
-    public OrderDTO()
-    {
-        super();
-    }
+    private String shippingStreetAddress;
 
     /**
      * @return String

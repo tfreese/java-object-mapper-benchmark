@@ -25,12 +25,12 @@ abstract class AbstractMapperTest
         Order order = OrderFactory.buildOrder();
         OrderDTO orderDTO = getOrderMapper().map(order);
 
-        assertEquals(orderDTO.getCustomerName(), "Joe Smith");
-        assertEquals(orderDTO.getBillingStreetAddress(), "1234 Market Street");
-        assertEquals(orderDTO.getBillingCity(), "San Fran");
-        assertEquals(orderDTO.getShippingStreetAddress(), "1234 West Townsend");
-        assertEquals(orderDTO.getShippingCity(), "Boston");
-        assertEquals(orderDTO.getProducts().get(0).getName(), "socks");
-        assertEquals(orderDTO.getProducts().get(1).getName(), "shoes");
+        assertEquals("Joe Smith", orderDTO.getCustomerName());
+        assertEquals("1234 Market Street", orderDTO.getBillingStreetAddress());
+        assertEquals("San Fran", orderDTO.getBillingCity());
+        assertEquals("1234 West Townsend", orderDTO.getShippingStreetAddress());
+        assertEquals("Boston", orderDTO.getShippingCity());
+        assertEquals("socks", orderDTO.getProducts().get(0).getName());
+        assertEquals("shoes", orderDTO.getProducts().get(1).getName());
     }
 }
